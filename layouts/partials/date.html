@@ -1,0 +1,7 @@
+{{- /* Language-aware date. FR: dd/mm/yyyy · EN: yyyy.mm.dd (austere ISO-ish).
+        Call with a Page: {{ partial "date.html" . }} */ -}}
+{{- if eq .Site.Language.Lang "fr" -}}
+  {{- .Date.Format "02/01/2006" -}}
+{{- else -}}
+  {{- .Date.Format "2006.01.02" -}}
+{{- end -}}

@@ -1,0 +1,11 @@
+<footer class="site-foot wrap">
+  <div class="foot-links">
+    {{ range .Site.Params.contact }}
+      <a href="{{ .url }}"{{ if not (hasPrefix .url "mailto:") }} rel="me noopener" target="_blank"{{ end }}>{{ .name }}</a>
+    {{ end }}
+  </div>
+  <div class="foot-meta">
+    <span>© {{ now.Year }} Johann Philippe</span>
+    <span class="foot-note">F/LOSS · Hugo · {{ T "nav_home" }} lo-fi</span>
+  </div>
+</footer>

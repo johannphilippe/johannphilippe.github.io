@@ -1,0 +1,35 @@
+{{ define "main" }}
+  <div class="post-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="lede prose">{{ . }}</div>{{ end }}
+  </div>
+
+  {{ $comp := where .Pages "Params.category" "composition" }}
+  {{ $perf := where .Pages "Params.category" "performance" }}
+
+  <nav class="subcats" aria-label="subcategories">
+    <a href="#all">{{ T "all_of_section" }}</a>
+    <a href="#composition">{{ T "cat_composition" }}</a>
+    <a href="#performance">{{ T "cat_performance" }}</a>
+  </nav>
+
+  <section id="all">
+    <ul class="feed">
+      {{ range .Pages.ByDate.Reverse }}{{ partial "entry.html" . }}{{ end }}
+    </ul>
+  </section>
+
+  {{ if $comp }}
+  <section id="composition">
+    <h2>{{ T "cat_composition" }}</h2>
+    <ul class="feed">{{ range $comp.ByDate.Reverse }}{{ partial "entry.html" . }}{{ end }}</ul>
+  </section>
+  {{ end }}
+
+  {{ if $perf }}
+  <section id="performance">
+    <h2>{{ T "cat_performance" }}</h2>
+    <ul class="feed">{{ range $perf.ByDate.Reverse }}{{ partial "entry.html" . }}{{ end }}</ul>
+  </section>
+  {{ end }}
+{{ end }}

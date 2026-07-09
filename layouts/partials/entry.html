@@ -1,0 +1,13 @@
+{{/* A single row in a feed/list. Context = a Page. */}}
+<li>
+  <a class="entry card" href="{{ .RelPermalink }}">
+    <span class="date">{{ partial "date.html" . }}</span>
+    <span class="body">
+      <span class="title">{{ .Title }}</span>
+      {{ with .Params.summary }}<span class="sub">{{ . }}</span>{{ end }}
+    </span>
+    <span class="kind">
+      {{- with .Params.category -}}{{ T (printf "cat_%s" .) | default . }}{{- else -}}{{ T (printf "section_%s" (replace .Section "-" "_")) }}{{- end -}}
+    </span>
+  </a>
+</li>

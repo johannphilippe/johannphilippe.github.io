@@ -1,0 +1,35 @@
+{{- /* Renders an embedded player from a page/share URL, detecting the provider.
+        Supports: YouTube, Vimeo, PeerTube, Bandcamp, SoundCloud.
+        Unknown URLs fall back to a plain link.
+        Call: partial "embed.html" (dict "url" "https://…") */ -}}
+{{- $url := .url -}}
+{{- $u := urls.Parse $url -}}
+{{- $host := $u.Host -}}
+
+{{- if or (strings.Contains $host "youtube.com") (strings.Contains $host "youtu.be") -}}
+  {{- $id := "" -}}
+  {{- if strings.Contains $host "youtu.be" -}}
+    {{- $id = strings.TrimPrefix "/" $u.Path -}}
+  {{- else -}}
+    {{- $id = index (index $u.Query "v") 0 -}}
+  {{- end -}}
+  <div class="embed ratio"><iframe src="https://www.youtube-nocookie.com/embed/{{ $id }}" title="video" loading="lazy" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe></div>
+
+{{- else if strings.Contains $host "vimeo.com" -}}
+  {{- $id := path.Base $u.Path -}}
+  <div class="embed ratio"><iframe src="https://player.vimeo.com/video/{{ $id }}" title="video" loading="lazy" allowfullscreen></iframe></div>
+
+{{- else if strings.Contains $host "bandcamp.com" -}}
+  {{- /* Bandcamp needs the album/track id; paste the iframe-src share URL directly */ -}}
+  <div class="embed audio"><iframe src="{{ $url }}" title="bandcamp" loading="lazy" seamless></iframe></div>
+
+{{- else if strings.Contains $host "soundcloud.com" -}}
+  <div class="embed audio"><iframe height="166" src="{{ printf "https://w.soundcloud.com/player/?%s" (querify "url" $url "color" "#c8a24a" "inverse" "false") | safeURL }}" title="soundcloud" loading="lazy"></iframe></div>
+
+{{- else if or (strings.Contains $url "/videos/embed/") (strings.Contains $url "/w/") -}}
+  {{- /* PeerTube embed URL */ -}}
+  <div class="embed ratio"><iframe src="{{ $url }}" title="peertube" loading="lazy" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups"></iframe></div>
+
+{{- else -}}
+  <p><a href="{{ $url }}" rel="noopener" target="_blank">↗ {{ $url }}</a></p>
+{{- end -}}

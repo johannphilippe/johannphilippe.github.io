@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <div class="post-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="lede prose">{{ . }}</div>{{ end }}
+  </div>
+
+  <ul class="feed">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "entry.html" . }}
+    {{ end }}
+  </ul>
+{{ end }}

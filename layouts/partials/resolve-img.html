@@ -1,0 +1,14 @@
+{{- /* Returns a usable image URL. Accepts remote http(s) URLs as-is,
+        otherwise looks the file up as a page-bundle resource, then /static.
+        Call: partial "resolve-img.html" (dict "p" $ "src" "cover.jpg") */ -}}
+{{- $p := .p -}}
+{{- $src := .src -}}
+{{- if or (hasPrefix $src "http://") (hasPrefix $src "https://") (hasPrefix $src "//") -}}
+  {{- $src -}}
+{{- else -}}
+  {{- with $p.Resources.GetMatch $src -}}
+    {{- .RelPermalink -}}
+  {{- else -}}
+    {{- $src | relURL -}}
+  {{- end -}}
+{{- end -}}

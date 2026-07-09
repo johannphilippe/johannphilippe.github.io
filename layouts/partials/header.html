@@ -1,0 +1,40 @@
+<header class="site-head wrap">
+  <div class="brand">
+    <a href="{{ "" | relLangURL }}">JOHANN&nbsp;PHILIPPE</a>
+    <span class="brand-sub">{{ T "section_music" | lower }} · {{ T "section_computer_music" | lower }}</span>
+  </div>
+
+  <nav class="nav" aria-label="main">
+    {{ $cur := .RelPermalink }}
+    {{ $items := slice
+        (dict "url" "" "key" "nav_home")
+        (dict "url" "music" "key" "nav_music")
+        (dict "url" "computer-music" "key" "nav_computer_music")
+        (dict "url" "outreach" "key" "nav_outreach") }}
+    {{ if .Site.Params.agenda }}
+      {{ $items = $items | append (dict "url" "agenda" "key" "nav_agenda") }}
+    {{ end }}
+    {{ $items = $items | append (dict "url" "about" "key" "nav_about") }}
+    {{ range $items }}
+      {{ $href := .url | relLangURL }}
+      {{ $active := or (eq $cur $href) (and (ne .url "") (hasPrefix $cur $href)) }}
+      <a href="{{ $href }}"{{ if $active }} class="active" aria-current="page"{{ end }}>{{ T .key }}</a>
+    {{ end }}
+  </nav>
+
+  <div class="lang" aria-label="language">
+    {{ range .Site.Languages }}
+      {{ $lang := . }}
+      {{ if eq $lang.Lang $.Site.Language.Lang }}
+        <span class="active">{{ .LanguageName }}</span>
+      {{ else }}
+        {{ $target := "" }}
+        {{ range $.AllTranslations }}
+          {{ if eq .Language.Lang $lang.Lang }}{{ $target = .RelPermalink }}{{ end }}
+        {{ end }}
+        {{ if not $target }}{{ $target = $lang.Lang | relURL }}{{ end }}
+        <a href="{{ $target }}">{{ .LanguageName }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+</header>

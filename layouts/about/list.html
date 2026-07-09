@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <article>
+    <header class="post-head">
+      <h1>{{ .Title }}</h1>
+    </header>
+
+    {{ with .Params.portrait }}
+      {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
+      <img class="cover" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+    {{ end }}
+
+    <div class="prose">{{ .Content }}</div>
+
+    <h2>{{ T "contact" }}</h2>
+    <ul class="links">
+      {{ range .Site.Params.contact }}
+        <li><a href="{{ .url }}"{{ if not (hasPrefix .url "mailto:") }} rel="me noopener" target="_blank"{{ end }}>↗ {{ .name }}</a></li>
+      {{ end }}
+    </ul>
+  </article>
+{{ end }}

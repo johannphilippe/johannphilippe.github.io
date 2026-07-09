@@ -1,0 +1,13 @@
+{{- /* An agenda event row. Call: partial "event.html" (dict "page" $page "past" false) */ -}}
+{{- $p := .page -}}
+<div class="event{{ if .past }} past{{ end }}">
+  <div class="when">
+    {{ partial "date.html" $p }}
+    {{ with $p.Params.time }}<br>{{ . }}{{ end }}
+  </div>
+  <div class="what">
+    <div class="title">{{ with $p.Params.link }}<a href="{{ . }}" rel="noopener" target="_blank">{{ $p.Title }} ↗</a>{{ else }}{{ $p.Title }}{{ end }}</div>
+    {{ with $p.Params.location }}<div class="where">{{ . }}</div>{{ end }}
+    {{ with $p.Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </div>
+</div>

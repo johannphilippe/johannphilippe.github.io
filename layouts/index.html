@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <p class="eyebrow">{{ .Site.Params.description }}</p>
+
+  <h2 class="visually-hidden" style="position:absolute;left:-9999px">{{ T "latest" }}</h2>
+  {{ $sections := slice "posts" "music" "computer-music" "outreach" }}
+  {{ $feed := where .Site.RegularPages "Section" "in" $sections }}
+  <ul class="feed">
+    {{ range $feed.ByDate.Reverse }}
+      {{ partial "entry.html" . }}
+    {{ end }}
+  </ul>
+{{ end }}

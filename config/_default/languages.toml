@@ -1,0 +1,15 @@
+[fr]
+  languageName = "FR"
+  languageCode = "fr-FR"
+  weight = 1
+  title = "Johann Philippe"
+  [fr.params]
+    description = "Johann Philippe — compositeur de musique électroacoustique, designer sonore, développeur, pédagogue."
+
+[en]
+  languageName = "EN"
+  languageCode = "en-US"
+  weight = 2
+  title = "Johann Philippe"
+  [en.params]
+    description = "Johann Philippe — electroacoustic music composer, computer music designer, developer, teacher."

@@ -1,0 +1,25 @@
+# Main Hugo configuration.
+# baseURL is overridden by the GitHub Actions deploy; keep a sensible local default.
+baseURL = "https://johannphilippe.github.io/"
+title = "Johann Philippe"
+
+# Multilingual: French is the default (served at /), English lives under /en/.
+defaultContentLanguage = "fr"
+defaultContentLanguageInSubdir = false
+
+# Clean, minimal output. No taxonomies we don't use.
+enableEmoji = false
+enableInlineShortcodes = true
+summaryLength = 30
+
+# Markdown: allow raw HTML (needed for embeds), sober defaults.
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    noClasses = false
+    style = "bw"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

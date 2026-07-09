@@ -1,0 +1,26 @@
+{{ define "main" }}
+  <div class="post-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="lede prose">{{ . }}</div>{{ end }}
+  </div>
+
+  {{ $now := now }}
+  {{ $upcoming := where .Pages "Date" ">=" $now }}
+  {{ $past := where .Pages "Date" "<" $now }}
+
+  <section class="agenda-group">
+    <h2>{{ T "upcoming" }}</h2>
+    {{ if $upcoming }}
+      {{ range $upcoming.ByDate }}{{ partial "event.html" (dict "page" . "past" false) }}{{ end }}
+    {{ else }}
+      <p class="lede">{{ T "no_events" }}</p>
+    {{ end }}
+  </section>
+
+  {{ if $past }}
+  <section class="agenda-group">
+    <h2>{{ T "past" }}</h2>
+    {{ range $past.ByDate.Reverse }}{{ partial "event.html" (dict "page" . "past" true) }}{{ end }}
+  </section>
+  {{ end }}
+{{ end }}

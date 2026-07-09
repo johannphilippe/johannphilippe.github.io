@@ -1,0 +1,51 @@
+[nav_home]
+other = "accueil"
+[nav_music]
+other = "musique"
+[nav_computer_music]
+other = "musique informatique"
+[nav_outreach]
+other = "médiation"
+[nav_agenda]
+other = "agenda"
+[nav_about]
+other = "à propos"
+
+[section_music]
+other = "Musique"
+[section_computer_music]
+other = "Musique informatique"
+[section_outreach]
+other = "Médiation"
+[section_agenda]
+other = "Agenda"
+[section_posts]
+other = "Actualités"
+
+[cat_composition]
+other = "composition"
+[cat_performance]
+other = "performance"
+
+[latest]
+other = "Derniers articles"
+[read_more]
+other = "lire la suite"
+[all_of_section]
+other = "voir tout"
+[back]
+other = "retour"
+[upcoming]
+other = "à venir"
+[past]
+other = "passés"
+[no_events]
+other = "Aucun événement pour le moment."
+[gallery]
+other = "Galerie"
+[links]
+other = "Liens"
+[on_github]
+other = "sur GitHub"
+[contact]
+other = "Contact"

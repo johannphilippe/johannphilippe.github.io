@@ -1,0 +1,28 @@
+# Site-wide parameters. Edit these without touching any template.
+
+# --- Feature toggles ---------------------------------------------------------
+# Set agenda = false to remove the Agenda section from navigation entirely.
+agenda = true
+
+# --- Aesthetic ---------------------------------------------------------------
+# Single restrained accent colour (used for links, active nav, rules-on-hover).
+# Muted amber by default; swap for any CSS colour.
+accent = "#c8a24a"
+# Subtle film-grain overlay. Set to false for a perfectly flat surface.
+grain = true
+
+# --- Contact links -----------------------------------------------------------
+# Add as many as you like; each becomes a link on the About page and footer.
+# `name` is shown, `url` is the target. Order = display order.
+[[contact]]
+  name = "Email"
+  url = "mailto:johann.philippe1992@gmail.com"
+[[contact]]
+  name = "GitHub"
+  url = "https://github.com/johannphilippe"
+[[contact]]
+  name = "Bandcamp"
+  url = "https://bandcamp.com/"
+[[contact]]
+  name = "SoundCloud"
+  url = "https://soundcloud.com/"

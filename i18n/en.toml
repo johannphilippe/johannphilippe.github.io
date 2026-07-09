@@ -1,0 +1,51 @@
+[nav_home]
+other = "home"
+[nav_music]
+other = "music"
+[nav_computer_music]
+other = "computer music"
+[nav_outreach]
+other = "outreach"
+[nav_agenda]
+other = "agenda"
+[nav_about]
+other = "about"
+
+[section_music]
+other = "Music"
+[section_computer_music]
+other = "Computer music"
+[section_outreach]
+other = "Outreach"
+[section_agenda]
+other = "Agenda"
+[section_posts]
+other = "News"
+
+[cat_composition]
+other = "composition"
+[cat_performance]
+other = "performance"
+
+[latest]
+other = "Latest"
+[read_more]
+other = "read more"
+[all_of_section]
+other = "see all"
+[back]
+other = "back"
+[upcoming]
+other = "upcoming"
+[past]
+other = "past"
+[no_events]
+other = "No events yet."
+[gallery]
+other = "Gallery"
+[links]
+other = "Links"
+[on_github]
+other = "on GitHub"
+[contact]
+other = "Contact"

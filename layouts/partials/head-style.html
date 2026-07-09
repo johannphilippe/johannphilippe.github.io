@@ -1,0 +1,5 @@
+{{- with resources.Get "css/main.css" -}}
+  {{- $css := . | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- end -}}
+<style>:root{--accent:{{ .Site.Params.accent | default "#c8a24a" }};}</style>

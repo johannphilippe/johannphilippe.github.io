@@ -1,0 +1,52 @@
+{{ define "main" }}
+  {{ $sectionURL := printf "%s" .Section | relLangURL }}
+  <a class="back" href="{{ $sectionURL }}">← {{ T "back" }}</a>
+
+  <article>
+    <header class="post-head">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="lede">{{ . }}</p>{{ end }}
+      <div class="post-meta">
+        <span>{{ partial "date.html" . }}</span>
+        {{ with .Params.category }} · <span>{{ T (printf "cat_%s" .) | default . }}</span>{{ end }}
+        {{ with .Params.location }} · <span>{{ . }}</span>{{ end }}
+      </div>
+    </header>
+
+    {{/* Cover image: remote URL or co-located resource */}}
+    {{ with .Params.cover }}
+      {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
+      <img class="cover" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+    {{ end }}
+
+    {{/* Main player: any embed URL in front matter (player: "https://…") */}}
+    {{ with .Params.player }}
+      {{ partial "embed.html" (dict "url" .) }}
+    {{ end }}
+
+    {{ with .Params.github }}
+      <ul class="links"><li><a href="{{ . }}" rel="noopener" target="_blank">↗ {{ $.Title }} {{ T "on_github" }}</a></li></ul>
+    {{ end }}
+
+    <div class="prose">{{ .Content }}</div>
+
+    {{/* Extra links (list of {name,url}) */}}
+    {{ with .Params.links }}
+      <h2>{{ T "links" }}</h2>
+      <ul class="links">
+        {{ range . }}<li><a href="{{ .url }}" rel="noopener" target="_blank">↗ {{ .name }}</a></li>{{ end }}
+      </ul>
+    {{ end }}
+
+    {{/* Gallery (list of image paths/urls) */}}
+    {{ with .Params.gallery }}
+      <h2>{{ T "gallery" }}</h2>
+      <div class="gallery">
+        {{ range . }}
+          {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
+          <a href="{{ $src }}" target="_blank"><img src="{{ $src }}" alt="" loading="lazy"></a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </article>
+{{ end }}
