@@ -1,0 +1,12 @@
+{{- /* Inline image with an optional photo credit and caption. Usage:
+       {{< pic "photo.jpg" "Author Name" >}}
+       {{< pic "https://…/photo.jpg" "Author Name" "A caption" >}}
+       The 2nd and 3rd arguments are optional. */ -}}
+{{- $src := partial "resolve-img.html" (dict "p" .Page "src" (.Get 0)) -}}
+<figure class="figure">
+  <span class="img-frame">
+    <img src="{{ $src }}" alt="{{ .Get 2 | default "" }}" loading="lazy">
+    {{ partial "img-credit.html" (.Get 1) }}
+  </span>
+  {{ with .Get 2 }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

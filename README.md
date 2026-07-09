@@ -52,13 +52,27 @@ date: 2026-05-18
 summary: "One-line subtitle shown under the title in listings (optional)."
 category: composition        # music only: composition | performance
 cover: "cover.jpg"           # a file in this folder, OR a full https:// URL
+cover_credit: "Photographer" # optional; shows a small "© Photographer" on the cover
 player: "https://www.youtube.com/watch?v=..."   # optional embedded player
 gallery:                     # optional small gallery
-  - "photo1.jpg"
-  - "photo2.jpg"
+  - "photo1.jpg"             # plain form: no credit
+  - src: "photo2.jpg"        # credited form
+    credit: "Photographer"
 ---
 Your text in Markdown here.
 ```
+
+### Photo credits
+Any image can carry an optional credit, shown as a small "© …" overlay in the corner:
+- **Cover** → `cover_credit: "Name"` in the front matter.
+- **Gallery** → write the item as `- src: "…"` + `credit: "…"` (plain `- "…"` = no credit).
+- **Home hero** → `home_image_credit` in `config/_default/params.toml`.
+- **Inline image in the text** → use the `pic` shortcode:
+  ```
+  {{</* pic "photo.jpg" "Photographer" */>}}
+  {{</* pic "photo.jpg" "Photographer" "An optional caption" */>}}
+  ```
+  (Just the credit is optional too: `{{</* pic "photo.jpg" */>}}`.)
 
 Computer-music post — add a repo link:
 

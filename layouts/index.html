@@ -1,4 +1,15 @@
 {{ define "main" }}
+  {{ with .Site.Params.home_image }}
+    {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
+    <figure class="home-hero">
+      <span class="img-frame">
+        <img src="{{ $src }}" alt="" loading="eager">
+        {{ partial "img-credit.html" $.Site.Params.home_image_credit }}
+      </span>
+      {{ with $.Site.Params.home_caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+    </figure>
+  {{ end }}
+
   <p class="eyebrow">{{ .Site.Params.description }}</p>
 
   <h2 class="visually-hidden" style="position:absolute;left:-9999px">{{ T "latest" }}</h2>

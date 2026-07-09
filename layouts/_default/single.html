@@ -13,10 +13,13 @@
       </div>
     </header>
 
-    {{/* Cover image: remote URL or co-located resource */}}
+    {{/* Cover image: remote URL or co-located resource. Optional cover_credit. */}}
     {{ with .Params.cover }}
       {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
-      <img class="cover" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+      <span class="img-frame cover-frame">
+        <img class="cover" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+        {{ partial "img-credit.html" $.Params.cover_credit }}
+      </span>
     {{ end }}
 
     {{/* Main player: any embed URL in front matter (player: "https://…") */}}
@@ -38,13 +41,18 @@
       </ul>
     {{ end }}
 
-    {{/* Gallery (list of image paths/urls) */}}
+    {{/* Gallery: each item is a URL/path string, OR a map {src, credit}. */}}
     {{ with .Params.gallery }}
       <h2>{{ T "gallery" }}</h2>
       <div class="gallery">
         {{ range . }}
-          {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
-          <a href="{{ $src }}" target="_blank"><img src="{{ $src }}" alt="" loading="lazy"></a>
+          {{ $raw := . }}{{ $cred := "" }}
+          {{ if reflect.IsMap . }}{{ $raw = .src }}{{ $cred = .credit }}{{ end }}
+          {{ $src := partial "resolve-img.html" (dict "p" $ "src" $raw) }}
+          <a href="{{ $src }}" target="_blank">
+            <img src="{{ $src }}" alt="" loading="lazy">
+            {{ partial "img-credit.html" $cred }}
+          </a>
         {{ end }}
       </div>
     {{ end }}

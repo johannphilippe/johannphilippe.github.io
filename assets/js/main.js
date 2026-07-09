@@ -2,7 +2,6 @@
 (function () {
   "use strict";
   var root = document.documentElement;
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   // --- #1 Reveal on scroll ---------------------------------------------------
   // Feed rows, covers, galleries, embeds and events fade up as they enter view,
@@ -30,7 +29,7 @@
     //  reveal      : in-article headings, quotes, code -> stepped flicker
     var groups = [
       { sel: "[data-kind='section'] .post-head h1, [data-kind='home'] .eyebrow", cls: "reveal-lead" },
-      { sel: ".cover, .gallery, .embed, .prose img", cls: "reveal-soft" },
+      { sel: ".home-hero img, .cover, .gallery, .embed, .prose img", cls: "reveal-soft" },
       { sel: ".prose h2, .prose h3, .prose blockquote, .prose pre", cls: "reveal" }
     ];
     groups.forEach(function (g) {
@@ -76,37 +75,15 @@
     all.forEach(function (el) { io.observe(el); });
   }
 
-  // --- #6 Cursor-reactive grain ---------------------------------------------
-  // The grain overlay drifts with the cursor and thickens toward the bottom of
-  // the screen. Off on touch devices and under reduced-motion; only if grain is on.
-  var coarse = window.matchMedia("(pointer: coarse)");
-  if (!reduce.matches && !coarse.matches && root.dataset.grain === "on") {
-    var ticking = false, mx = 0.5, my = 0.5;
-
-    // Restore the last cursor-driven grain level across navigation, so a section
-    // click (a full page load) doesn't snap the overlay back to the CSS default.
-    try {
-      var saved = sessionStorage.getItem("grainLevel");
-      if (saved !== null) {
-        my = parseFloat(saved);
-        root.style.setProperty("--grain-level", my.toFixed(3));
-      }
-    } catch (e) {}
-
-    window.addEventListener("pointermove", function (e) {
-      mx = e.clientX / window.innerWidth;
-      my = e.clientY / window.innerHeight;
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(function () {
-          root.style.setProperty("--grain-px", ((mx * 60) - 30).toFixed(1) + "px");
-          root.style.setProperty("--grain-py", ((my * 60) - 30).toFixed(1) + "px");
-          // Normalised 0..1; CSS maps it to a per-theme opacity range.
-          root.style.setProperty("--grain-level", my.toFixed(3));
-          try { sessionStorage.setItem("grainLevel", my.toFixed(3)); } catch (e) {}
-          ticking = false;
-        });
-      }
-    }, { passive: true });
-  }
+  // --- Email de-obfuscation --------------------------------------------------
+  // Rejoin the split address into a real mailto: link at runtime, so the raw
+  // address never appears in the static HTML that harvesting bots scrape.
+  document.querySelectorAll("a.email").forEach(function (a) {
+    var u = a.getAttribute("data-user"), d = a.getAttribute("data-domain");
+    if (u && d) {
+      a.setAttribute("href", "mailto:" + u + "@" + d);
+      a.removeAttribute("data-user");
+      a.removeAttribute("data-domain");
+    }
+  });
 })();

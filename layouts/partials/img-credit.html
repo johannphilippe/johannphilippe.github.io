@@ -1,0 +1,3 @@
+{{- /* Small photo credit overlay. Call with the credit string (may be empty):
+       {{ partial "img-credit.html" .Params.cover_credit }} */ -}}
+{{- with . -}}<span class="credit">© {{ . }}</span>{{- end -}}

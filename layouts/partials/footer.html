@@ -1,7 +1,7 @@
 <footer class="site-foot wrap">
   <div class="foot-links">
     {{ range .Site.Params.contact }}
-      <a href="{{ .url }}"{{ if not (hasPrefix .url "mailto:") }} rel="me noopener" target="_blank"{{ end }}>{{ .name }}</a>
+      {{ partial "contact-link.html" . }}
     {{ end }}
   </div>
   <div class="foot-meta">

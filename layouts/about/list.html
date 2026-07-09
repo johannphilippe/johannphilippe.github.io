@@ -14,7 +14,7 @@
     <h2>{{ T "contact" }}</h2>
     <ul class="links">
       {{ range .Site.Params.contact }}
-        <li><a href="{{ .url }}"{{ if not (hasPrefix .url "mailto:") }} rel="me noopener" target="_blank"{{ end }}>↗ {{ .name }}</a></li>
+        <li>{{ partial "contact-link.html" . }}</li>
       {{ end }}
     </ul>
   </article>

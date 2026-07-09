@@ -4,6 +4,15 @@
 # Set agenda = false to remove the Agenda section from navigation entirely.
 agenda = true
 
+# --- Home ---------------------------------------------------------------------
+# Hero image at the top of the home page. A full https:// URL or a file in
+# static/ (e.g. "img/hero.jpg"). Leave empty ("") to hide it.
+home_image = "https://picsum.photos/seed/jp-hero/1800/900"
+# Optional caption shown under the hero (small, dim). Leave empty to hide.
+home_caption = ""
+# Optional photo credit for the hero, shown as a small "© …" corner overlay.
+home_image_credit = "Lorem Picsum"
+
 # --- Aesthetic ---------------------------------------------------------------
 # Single restrained accent colour (used for links, active nav, rules-on-hover).
 # Muted amber by default; swap for any CSS colour.

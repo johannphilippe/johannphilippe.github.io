@@ -1,0 +1,14 @@
+{{- /* Renders one [[contact]] entry. mailto: links are obfuscated so neither
+       "mailto:" nor a "user@domain" pattern appears in the HTML — main.js
+       rejoins the parts on load. A <noscript> [at]/[dot] fallback is shown
+       when JS is off. Call: {{ partial "contact-link.html" $contact }} */ -}}
+{{- $c := . -}}
+{{- if hasPrefix $c.url "mailto:" -}}
+  {{- $addr := strings.TrimPrefix "mailto:" $c.url -}}
+  {{- $parts := split $addr "@" -}}
+  {{- $user := index $parts 0 -}}
+  {{- $domain := index $parts 1 -}}
+  <a class="email" data-user="{{ $user }}" data-domain="{{ $domain }}">{{ $c.name }}</a><noscript> ({{ replace $user "." " [dot] " }} [at] {{ replace $domain "." " [dot] " }})</noscript>
+{{- else -}}
+  <a href="{{ $c.url }}" rel="me noopener" target="_blank">{{ $c.name }}</a>
+{{- end -}}
