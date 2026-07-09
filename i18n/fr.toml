@@ -3,7 +3,7 @@ other = "accueil"
 [nav_music]
 other = "musique"
 [nav_computer_music]
-other = "musique informatique"
+other = "informatique musicale"
 [nav_outreach]
 other = "médiation"
 [nav_agenda]
@@ -14,7 +14,7 @@ other = "à propos"
 [section_music]
 other = "Musique"
 [section_computer_music]
-other = "Musique informatique"
+other = "Informatique musicale"
 [section_outreach]
 other = "Médiation"
 [section_agenda]

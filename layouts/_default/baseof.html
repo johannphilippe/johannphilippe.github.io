@@ -6,8 +6,11 @@
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   {{ partial "head-style.html" . }}
+  {{/* Restore the grain level before first paint so a section click doesn't
+       flash the default level before main.js (deferred) runs. */}}
+  <script>try{var g=sessionStorage.getItem("grainLevel");if(g!==null)document.documentElement.style.setProperty("--grain-level",g)}catch(e){}</script>
 </head>
-<body>
+<body data-kind="{{ .Kind }}">
   <a class="skip" href="#main">→</a>
   {{ partial "header.html" . }}
   <main id="main" class="wrap">

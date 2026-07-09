@@ -75,19 +75,51 @@ html[data-grain="on"] body::after {
 }
 
 /* --- Reveal on scroll (only applied when JS is active) -------------------- */
-html.js-reveal .reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1);
-  will-change: opacity, transform;
+html.js-reveal .reveal,
+html.js-reveal .reveal-soft,
+html.js-reveal .reveal-lead { opacity: 0; will-change: opacity; }
+
+/* Text: hard-stepped opacity — flickers on like a tube catching, no motion. */
+html.js-reveal .reveal.is-visible { animation: flicker-in .5s steps(1, end) both; }
+@keyframes flicker-in {
+  0%   { opacity: 0; }
+  22%  { opacity: .45; }
+  38%  { opacity: 0; }
+  54%  { opacity: .75; }
+  70%  { opacity: .3; }
+  86%  { opacity: 1; }
+  100% { opacity: 1; }
 }
-html.js-reveal .reveal.is-visible { opacity: 1; transform: none; }
-/* Under reduced-motion: keep a gentle opacity-only fade, no movement. */
+
+/* Pictures & players: a calm fade — a flicker here reads as a loading bug. */
+html.js-reveal .reveal-soft { transition: opacity .6s ease; }
+html.js-reveal .reveal-soft.is-visible { opacity: 1; }
+
+/* Main section titles: an accelerating flicker — blinks tighten, then settle solid,
+   giving the reveal a rhythmic direction. */
+html.js-reveal .reveal-lead.is-visible { animation: flicker-accel .8s steps(1, end) both; }
+@keyframes flicker-accel {
+  0%   { opacity: 0; }
+  20%  { opacity: .35; }   /* slow blink … */
+  28%  { opacity: 0; }
+  46%  { opacity: .55; }   /* gap 18 */
+  53%  { opacity: 0; }
+  67%  { opacity: .7; }    /* gap 14 */
+  72%  { opacity: 0; }
+  82%  { opacity: .85; }   /* gap 10 */
+  86%  { opacity: 0; }
+  92%  { opacity: 1; }     /* gap 6 */
+  94%  { opacity: .55; }   /* rapid stutter … */
+  96%  { opacity: 1; }
+  100% { opacity: 1; }     /* solid */
+}
+
+/* Reduced-motion: NO flicker (flashing is what we must avoid) — plain gentle fades. */
 @media (prefers-reduced-motion: reduce) {
-  html.js-reveal .reveal {
-    transform: none;
-    transition: opacity .6s ease;
-  }
+  html.js-reveal .reveal,
+  html.js-reveal .reveal-lead { transition: opacity .55s ease; }
+  html.js-reveal .reveal.is-visible,
+  html.js-reveal .reveal-lead.is-visible { animation: none; opacity: 1; }
 }
 
 /* --- Layout --------------------------------------------------------------- */
