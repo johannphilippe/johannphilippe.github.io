@@ -1,0 +1,6 @@
+{{- /* Markdown link render hook: external links open in a new tab; internal
+       links (relative paths, anchors) stay in the same tab. */ -}}
+{{- $d := .Destination -}}
+{{- $external := or (strings.Contains $d "://") (hasPrefix $d "//") -}}
+<a href="{{ $d | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- /* trim */ -}}

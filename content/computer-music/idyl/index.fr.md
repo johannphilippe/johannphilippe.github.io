@@ -86,5 +86,5 @@ Les modules sont les portes vers le monde extérieur. Il s'agit de librairies C+
 
 ## État du projet 
 
-Idyl, à l'heure actuelle, est encore en version bêta, le projet étant toujours potentiellement sujet à d'importants changements. 
+Idyl, à l'heure actuelle, est encore en version alpha, le projet étant toujours potentiellement sujet à d'importants changements. 
 Cela étant dit, j'ai été heureux de lui offrir un baptême du feu en concert, avec le module Csound en guise de moteur audio.

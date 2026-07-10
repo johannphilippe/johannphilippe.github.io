@@ -31,4 +31,4 @@ Cette nouvelle version ajoute également la prise en charge des fichiers audio (
 De plus, le nouveau modèle a été développé en gardant à l'esprit certaines contraintes de l'embarqué. Il offre un suivi de l'utilisation de la mémoire lors de la compilation, et permet de choisir où le programme est stocké (Flash ou QSPI) et où il est exécuté (Flash, SRAM, QSPI).
 Enfin, il offre une option permettant de déplacer certains *buffers* vers la SRAM lorsqu'ils dépassent un seuil de taille spécifié.
 
-Au final, *faust2daisy* est complet : il libère toute la puissance des cartes Daisy tout en profitant de l'expressivité et la qualité audio de Faust.
+Finalement, *faust2daisy* est complet : il libère toute la puissance des cartes Daisy tout en profitant de l'expressivité et la qualité audio de Faust.

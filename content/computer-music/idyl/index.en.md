@@ -39,7 +39,6 @@ process: {
     n2 = noise(0, 1, 100ms) // Changes every 100ms 
     s2 = sum(n1, n2) // Changes every 50ms (reacting to n1 and n2)
 }
-
 ```
 
 The other important concept is that of `flow`: a flexible data structuring system that allows the description of sequences running in parallel with one another:
@@ -89,5 +88,5 @@ Modules are the gateways to the outside world. They are compiled C++ libraries d
 
 ## Project Status
 
-At the moment, Idyl is still in beta version, as the project remains potentially subject to major changes.
+At the moment, Idyl is still in alpha version, as the project remains potentially subject to major changes.
 That being said, I was happy to give it a baptism by fire in concert, using the Csound module as the audio engine.

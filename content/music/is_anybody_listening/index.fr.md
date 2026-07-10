@@ -2,14 +2,14 @@
 title: "Is anybody listening ?"
 date: 2023-03-31
 category: composition
-summary: "Composition for 3 electronic orchestras"
+summary: "Composition pour 3 orchestres électroniques"
 cover: "Isanybodylistening.png"
 cover_credit: ""
 player: ""
 gallery:
 ---
 
-*Is anybody listening ?* est une composition pour 3 orchestres électroniques d'enfants. 
+*Is anybody listening ?* est une composition pour 3 orchestres électroniques, destinée à être interprétée par des enfants. 
 
 Ce travail a été commandé par l'École Nationale de Musique de Villeurbanne, et conçue avec le soutien et l'accompagnement artistique de GRAME. 
 
