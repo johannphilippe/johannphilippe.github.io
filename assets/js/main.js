@@ -29,7 +29,7 @@
     //  reveal      : in-article headings, quotes, code -> stepped flicker
     var groups = [
       { sel: "[data-kind='section'] .post-head h1, [data-kind='home'] .eyebrow", cls: "reveal-lead" },
-      { sel: ".home-hero img, .cover, .gallery, .embed, .prose img", cls: "reveal-soft" },
+      { sel: ".home-hero img, .cover, .portrait, .gallery, .embed, .prose img", cls: "reveal-soft" },
       { sel: ".prose h2, .prose h3, .prose blockquote, .prose pre", cls: "reveal" }
     ];
     groups.forEach(function (g) {

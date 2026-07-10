@@ -6,7 +6,7 @@
 
     {{ with .Params.portrait }}
       {{ $src := partial "resolve-img.html" (dict "p" $ "src" . "w" 1400) }}
-      <img class="cover" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+      <img class="portrait" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
     {{ end }}
 
     <div class="prose">{{ .Content }}</div>

@@ -249,6 +249,14 @@ hr, .rule { border: 0; border-top: 1px solid var(--rule); margin: 2.2rem 0; }
 .cover { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; height: auto; display: block; border: 1px solid var(--rule); filter: grayscale(0.15) contrast(1.02); }
 .cover-frame { margin-bottom: 1.8rem; }
 
+/* About portrait: same grayscale filter as the home hero, but keeps its natural
+   aspect ratio (a portrait shouldn't be cropped to a wide banner). */
+.portrait {
+  display: block; width: 100%; height: auto; max-width: 30rem;
+  margin-bottom: 1.8rem; border: 1px solid var(--rule);
+  filter: grayscale(1) contrast(1.08) brightness(.92);
+}
+
 /* --- Image frame + photo credit ------------------------------------------- */
 .img-frame { position: relative; display: block; }
 .credit {

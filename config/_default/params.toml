@@ -10,11 +10,11 @@ agenda = true
 #     it is optimised at build time (resized to 2000px wide + converted to WebP);
 #   - or a full https:// URL (used as-is, no optimisation).
 # Leave empty ("") to hide it.
-home_image = "img/home.jpg"
+home_image = "img/4juin.jpg"
 # Optional caption shown under the hero (small, dim). Leave empty to hide.
 home_caption = ""
 # Optional photo credit for the hero, shown as a small "© …" corner overlay.
-home_image_credit = "Lorem Picsum"
+home_image_credit = ""
 
 # --- Aesthetic ---------------------------------------------------------------
 # Single restrained accent colour (used for links, active nav, rules-on-hover).
@@ -37,4 +37,4 @@ grain = true
   url = "https://bandcamp.com/"
 [[contact]]
   name = "SoundCloud"
-  url = "https://soundcloud.com/"
+  url = "https://soundcloud.com/johannphilippe"

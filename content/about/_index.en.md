@@ -1,12 +1,8 @@
 ---
 title: "About"
-portrait: "https://picsum.photos/seed/jp-portrait/1200/700"
+portrait: "jofb.png"
 ---
-Johann Philippe is an electroacoustic music composer, sound designer, developer and
-teacher. His work explores a radical music — noise, ambient, electroacoustic — always
-carrying a certain poetry.
 
-He advocates a **low-tech** and **F/LOSS** practice: recycling materials, building his
-own tools, keeping a hold on technology rather than the other way around.
+Johann Philippe is an electroacoustic music composer, computer music designer, developer, and educator. His work explores a radical style of music—combining noise and softness, electroacoustics—always infused with a certain poetry.
 
-*(This is placeholder text — replace it with your real biography.)*
+He advocates for a DIY, low-tech, and F/LOSS approach: recycling materials, building his own tools, and keeping control over technology rather than letting it control him.
