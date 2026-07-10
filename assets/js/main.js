@@ -56,6 +56,7 @@
       euclid(k, n).forEach(function (idx, order) { claim(items[idx], "reveal", order); });
     }
     document.querySelectorAll(".feed").forEach(function (f) { claimList(f, "li"); });
+    document.querySelectorAll(".dates").forEach(function (d) { claimList(d, "li"); });
     document.querySelectorAll(".agenda-group").forEach(function (g) { claimList(g, ".event"); });
 
     // Force one reflow so the hidden state is committed to the paint before any

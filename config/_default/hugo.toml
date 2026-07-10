@@ -7,6 +7,10 @@ title = "Johann Philippe"
 defaultContentLanguage = "fr"
 defaultContentLanguageInSubdir = false
 
+# Agenda events are dated in the future. Without this, Hugo silently drops them
+# from the build and the "upcoming" section is always empty.
+buildFuture = true
+
 # Clean, minimal output. No taxonomies we don't use.
 enableEmoji = false
 enableInlineShortcodes = true

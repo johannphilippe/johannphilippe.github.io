@@ -27,8 +27,10 @@ other = "composition"
 [cat_performance]
 other = "performance"
 
+[next_dates]
+other = "Upcoming dates"
 [latest]
-other = "Latest"
+other = "Latest posts"
 [read_more]
 other = "read more"
 [all_of_section]

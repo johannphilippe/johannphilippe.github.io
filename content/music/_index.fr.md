@@ -1,5 +1,4 @@
 ---
 title: "Musique"
 ---
-Compositions électroacoustiques, pièces pour dispositifs, performances. Une musique
-radicale, traversée par le bruit, l'ambient et une certaine poésie.
+Compositions électroacoustiques, pièces pour dispositifs, performances. Une musique traversée par le bruit, la rage, et des éclats de douceur.

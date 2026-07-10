@@ -24,7 +24,10 @@
   <div class="embed audio"><iframe src="{{ $url }}" title="bandcamp" loading="lazy" seamless></iframe></div>
 
 {{- else if strings.Contains $host "soundcloud.com" -}}
-  <div class="embed audio"><iframe height="166" src="{{ printf "https://w.soundcloud.com/player/?%s" (querify "url" $url "color" "#c8a24a" "inverse" "false") | safeURL }}" title="soundcloud" loading="lazy"></iframe></div>
+  {{- /* SoundCloud has no dark theme; the widget is always white. We hide the
+         artwork/clutter and invert the iframe in dark mode (see main.css). */ -}}
+  {{- $accent := site.Params.accent | default "#c8a24a" -}}
+  <div class="embed audio soundcloud"><iframe height="166" src="{{ printf "https://w.soundcloud.com/player/?%s" (querify "url" $url "color" $accent "show_artwork" "false" "show_comments" "false" "show_teaser" "false" "hide_related" "true") | safeURL }}" title="soundcloud" loading="lazy"></iframe></div>
 
 {{- else if or (strings.Contains $url "/videos/embed/") (strings.Contains $url "/w/") -}}
   {{- /* PeerTube embed URL */ -}}

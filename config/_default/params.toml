@@ -5,9 +5,12 @@
 agenda = true
 
 # --- Home ---------------------------------------------------------------------
-# Hero image at the top of the home page. A full https:// URL or a file in
-# static/ (e.g. "img/hero.jpg"). Leave empty ("") to hide it.
-home_image = "https://picsum.photos/seed/jp-hero/1800/900"
+# Hero image at the top of the home page. Either:
+#   - a local file placed in  assets/  (e.g. "img/home.jpg") — RECOMMENDED:
+#     it is optimised at build time (resized to 2000px wide + converted to WebP);
+#   - or a full https:// URL (used as-is, no optimisation).
+# Leave empty ("") to hide it.
+home_image = "img/home.jpg"
 # Optional caption shown under the hero (small, dim). Leave empty to hide.
 home_caption = ""
 # Optional photo credit for the hero, shown as a small "© …" corner overlay.

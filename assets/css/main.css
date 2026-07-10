@@ -186,6 +186,32 @@ hr, .rule { border: 0; border-top: 1px solid var(--rule); margin: 2.2rem 0; }
   text-transform: uppercase;
 }
 
+/* --- Block header (shared by "next dates" and the article feed) ------------ */
+.block-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 1rem; border-bottom: 1px solid var(--rule); padding-bottom: .5rem;
+}
+.block-head h2 {
+  margin: 0; font-size: .74rem; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--fg-faint);
+}
+.block-head .all { font-size: .72rem; letter-spacing: .1em; color: var(--fg-faint); white-space: nowrap; }
+/* the feed's first row draws its own top rule — don't double it under the header */
+.block-head + .feed li:first-child { border-top: 0; }
+
+/* --- Home: next dates ----------------------------------------------------- */
+.home-agenda { margin: 0 0 2.8rem; }
+.dates { list-style: none; margin: 0; padding: 0; }
+.dates li {
+  display: grid; grid-template-columns: 10rem 1fr; gap: var(--gap);
+  align-items: baseline; padding: .75rem 0; border-bottom: 1px solid var(--rule);
+}
+.dates .when { color: var(--accent); font-size: .82rem; letter-spacing: .04em; white-space: nowrap; }
+.dates .where { display: block; color: var(--fg-faint); font-size: .78rem; margin-top: .1rem; }
+@media (max-width: 40rem) {
+  .dates li { grid-template-columns: 1fr; gap: .15rem; }
+}
+
 /* --- Feed / list (the home + section index) ------------------------------- */
 .feed { list-style: none; margin: 0; padding: 0; }
 .feed li { border-top: 1px solid var(--rule); }
@@ -245,6 +271,13 @@ hr, .rule { border: 0; border-top: 1px solid var(--rule); margin: 2.2rem 0; }
 .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .embed.audio { border: 1px solid var(--rule); }
 .embed.audio iframe { position: static; width: 100%; }
+/* SoundCloud's widget is always white and, being cross-origin, cannot be styled
+   from here. Invert the whole iframe in dark mode; hue-rotate keeps the accent
+   waveform near its true hue. Artwork is disabled in the embed URL so nothing
+   ends up rendered as a photographic negative. */
+@media (prefers-color-scheme: dark) {
+  .embed.soundcloud iframe { filter: invert(1) hue-rotate(180deg); }
+}
 
 /* --- Gallery -------------------------------------------------------------- */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: .5rem; margin: 1.6rem 0; }

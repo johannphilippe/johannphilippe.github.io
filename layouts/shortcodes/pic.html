@@ -2,7 +2,7 @@
        {{< pic "photo.jpg" "Author Name" >}}
        {{< pic "https://…/photo.jpg" "Author Name" "A caption" >}}
        The 2nd and 3rd arguments are optional. */ -}}
-{{- $src := partial "resolve-img.html" (dict "p" .Page "src" (.Get 0)) -}}
+{{- $src := partial "resolve-img.html" (dict "p" .Page "src" (.Get 0) "w" 1400) -}}
 <figure class="figure">
   <span class="img-frame">
     <img src="{{ $src }}" alt="{{ .Get 2 | default "" }}" loading="lazy">

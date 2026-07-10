@@ -3,7 +3,12 @@ title: "granular-engine"
 date: 2026-06-10
 summary: "Real-time granular synthesis engine in C++, designed to run on a Raspberry Pi. GPL."
 github: "https://github.com/johannphilippe/granular-engine"
-cover: "https://picsum.photos/seed/granular/1400/800"
+cover: "cover.jpg"
+cover_credit: "Johann Philippe"
+gallery:
+  - src: "shot1.jpg"
+    credit: "Johann Philippe"
+  - "shot2.jpg"
 links:
   - name: "Documentation"
     url: "https://example.org/granular-engine/docs"

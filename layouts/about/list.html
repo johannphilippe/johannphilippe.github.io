@@ -5,7 +5,7 @@
     </header>
 
     {{ with .Params.portrait }}
-      {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
+      {{ $src := partial "resolve-img.html" (dict "p" $ "src" . "w" 1400) }}
       <img class="cover" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
     {{ end }}
 

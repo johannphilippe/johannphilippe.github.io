@@ -2,7 +2,8 @@
        {{< gallery "img1.jpg" "https://…/img2.jpg" "img3.jpg" >}} */ -}}
 <div class="gallery">
   {{- range .Params -}}
-    {{- $src := partial "resolve-img.html" (dict "p" $.Page "src" .) -}}
-    <a href="{{ $src }}" target="_blank"><img src="{{ $src }}" alt="" loading="lazy"></a>
+    {{- $thumb := partial "resolve-img.html" (dict "p" $.Page "src" . "w" 700 "q" 80) -}}
+    {{- $full := partial "resolve-img.html" (dict "p" $.Page "src" . "w" 1600) -}}
+    <a href="{{ $full }}" target="_blank"><img src="{{ $thumb }}" alt="" loading="lazy"></a>
   {{- end -}}
 </div>

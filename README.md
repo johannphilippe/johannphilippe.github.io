@@ -105,8 +105,38 @@ link: "https://..."          # optional
 URL. For Bandcamp, paste the `src` URL from its "Embed this album" iframe code.
 
 ### Images
-Drop them in the article folder and reference them by filename (`cover.jpg`), or use a
-full `https://` URL for remote images. That's it.
+
+**In an article:** drop the file in the article's own folder and reference it by
+filename (`cover.jpg`, `gallery1.jpg`, …), or use a full `https://` URL for a remote
+image. Files co-located with the post are the simplest option.
+
+**Where to put pictures in general — two folders:**
+- The **article's own folder** (a page bundle) → optimised at build. Best for post images.
+- `assets/` → also optimised at build. This is where the home hero lives
+  (`assets/img/home.jpg`).
+- `static/` → copied **as-is**, no processing. Use for already-optimised files or SVGs;
+  reference them from the site root (a file `static/img/x.jpg` → `/img/x.jpg`).
+
+**Automatic optimisation.** Any *local* raster image (JPEG/PNG/TIFF/BMP/WebP) is resized
+and converted to **WebP** at build time. You can commit a full-size photo and forget
+about it. Images are **never upscaled** — a small source stays its own size.
+
+| Where | Max width | Quality |
+|---|---|---|
+| Home hero | 2000px | 82 |
+| Article cover | 1800px | 82 |
+| Gallery thumbnail | 700px | 80 |
+| Gallery click-through | 1600px | 82 |
+| About portrait, inline `pic` | 1400px | 82 |
+
+Remote `https://` images and SVG/GIF are passed through untouched.
+
+**Home hero:** replace `assets/img/home.jpg` with your own picture (any name works —
+just update `home_image` in `config/_default/params.toml`). If it's a local file under
+`assets/`, it's automatically resized to 2000px wide and served as WebP. A remote
+`https://` URL is used as-is.
+
+Tip: keep source photos reasonably sized (≤ ~2500px wide) so the repo stays lean.
 
 ---
 

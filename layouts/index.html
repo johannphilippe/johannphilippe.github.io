@@ -1,6 +1,17 @@
 {{ define "main" }}
   {{ with .Site.Params.home_image }}
-    {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
+    {{ $raw := . }}
+    {{ $src := $raw }}
+    {{ if not (or (hasPrefix $raw "http") (hasPrefix $raw "//")) }}
+      {{/* Local file in assets/: optimise at build time (resize + WebP, never upscaled). */}}
+      {{ with resources.Get $raw }}
+        {{ $eff := cond (lt .Width 2000) .Width 2000 }}
+        {{ $src = (.Resize (printf "%dx webp q82" $eff)).RelPermalink }}
+      {{ else }}
+        {{ warnf "home_image %q not found under assets/ (or static/)" $raw }}
+        {{ $src = $raw | relURL }}
+      {{ end }}
+    {{ end }}
     <figure class="home-hero">
       <span class="img-frame">
         <img src="{{ $src }}" alt="" loading="eager">
@@ -12,7 +23,35 @@
 
   <p class="eyebrow">{{ .Site.Params.description }}</p>
 
-  <h2 class="visually-hidden" style="position:absolute;left:-9999px">{{ T "latest" }}</h2>
+  {{/* Next dates: the 3 soonest upcoming events. Hidden when the agenda is
+       disabled, or when there is nothing upcoming. */}}
+  {{ if .Site.Params.agenda }}
+    {{ $upcoming := where (where .Site.RegularPages "Section" "agenda") "Date" ">=" now }}
+    {{ with first 3 $upcoming.ByDate }}
+      <section class="home-agenda">
+        <div class="block-head">
+          <h2>{{ T "next_dates" }}</h2>
+          <a class="all" href="{{ "agenda" | relLangURL }}">{{ T "all_of_section" }} →</a>
+        </div>
+        <ul class="dates">
+          {{ range . }}
+            {{ $ev := . }}
+            <li>
+              <span class="when">{{ partial "date.html" $ev }}{{ with $ev.Params.time }} · {{ . }}{{ end }}</span>
+              <span class="what">
+                {{ with $ev.Params.link }}<a href="{{ . }}" rel="noopener" target="_blank">{{ $ev.Title }} ↗</a>{{ else }}{{ $ev.Title }}{{ end }}
+                {{ with $ev.Params.location }}<span class="where">{{ . }}</span>{{ end }}
+              </span>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  {{ end }}
+
+  <div class="block-head">
+    <h2>{{ T "latest" }}</h2>
+  </div>
   {{ $sections := slice "posts" "music" "computer-music" "outreach" }}
   {{ $feed := where .Site.RegularPages "Section" "in" $sections }}
   <ul class="feed">

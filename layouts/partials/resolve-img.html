@@ -1,13 +1,27 @@
-{{- /* Returns a usable image URL. Accepts remote http(s) URLs as-is,
-        otherwise looks the file up as a page-bundle resource, then /static.
-        Call: partial "resolve-img.html" (dict "p" $ "src" "cover.jpg") */ -}}
+{{- /* Returns a usable image URL.
+        - Remote http(s) URLs: returned as-is (no processing).
+        - Local page-bundle raster images: resized + converted to WebP at build time.
+        - SVG/GIF, or files found only in /static: returned as-is.
+
+        Optional "w" (max width, px) enables optimisation; "q" sets quality (default 82).
+        The image is never upscaled: the target is capped at the source width.
+
+        Call: partial "resolve-img.html" (dict "p" $ "src" "cover.jpg" "w" 1800) */ -}}
 {{- $p := .p -}}
 {{- $src := .src -}}
+{{- $w := .w | default 0 -}}
+{{- $q := .q | default 82 -}}
 {{- if or (hasPrefix $src "http://") (hasPrefix $src "https://") (hasPrefix $src "//") -}}
   {{- $src -}}
 {{- else -}}
   {{- with $p.Resources.GetMatch $src -}}
-    {{- .RelPermalink -}}
+    {{- $can := in (slice "jpeg" "png" "webp" "tiff" "bmp") .MediaType.SubType -}}
+    {{- if and (gt $w 0) $can -}}
+      {{- $eff := cond (lt .Width $w) .Width $w -}}{{/* never upscale */}}
+      {{- (.Resize (printf "%dx webp q%d" $eff $q)).RelPermalink -}}
+    {{- else -}}
+      {{- .RelPermalink -}}
+    {{- end -}}
   {{- else -}}
     {{- $src | relURL -}}
   {{- end -}}

@@ -27,6 +27,8 @@ other = "composition"
 [cat_performance]
 other = "performance"
 
+[next_dates]
+other = "Prochaines dates"
 [latest]
 other = "Derniers articles"
 [read_more]

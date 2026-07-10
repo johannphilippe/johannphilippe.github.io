@@ -15,7 +15,7 @@
 
     {{/* Cover image: remote URL or co-located resource. Optional cover_credit. */}}
     {{ with .Params.cover }}
-      {{ $src := partial "resolve-img.html" (dict "p" $ "src" .) }}
+      {{ $src := partial "resolve-img.html" (dict "p" $ "src" . "w" 1800) }}
       <span class="img-frame cover-frame">
         <img class="cover" src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
         {{ partial "img-credit.html" $.Params.cover_credit }}
@@ -48,9 +48,10 @@
         {{ range . }}
           {{ $raw := . }}{{ $cred := "" }}
           {{ if reflect.IsMap . }}{{ $raw = .src }}{{ $cred = .credit }}{{ end }}
-          {{ $src := partial "resolve-img.html" (dict "p" $ "src" $raw) }}
-          <a href="{{ $src }}" target="_blank">
-            <img src="{{ $src }}" alt="" loading="lazy">
+          {{ $thumb := partial "resolve-img.html" (dict "p" $ "src" $raw "w" 700 "q" 80) }}
+          {{ $full := partial "resolve-img.html" (dict "p" $ "src" $raw "w" 1600) }}
+          <a href="{{ $full }}" target="_blank">
+            <img src="{{ $thumb }}" alt="" loading="lazy">
             {{ partial "img-credit.html" $cred }}
           </a>
         {{ end }}
