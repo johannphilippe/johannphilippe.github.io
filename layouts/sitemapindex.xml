@@ -1,0 +1,16 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {{- $now := now -}}
+  {{- range . }}
+  {{- /* Clamp to today: future-dated agenda events would otherwise make the
+         whole site look "last modified" months from now. */ -}}
+  {{- $lm := .LastChange -}}
+  {{- if gt $lm.Unix $now.Unix }}{{ $lm = $now }}{{ end }}
+  <sitemap>
+    <loc>{{ .SitemapAbsURL }}</loc>
+    {{- if not $lm.IsZero }}
+    <lastmod>{{ safeHTML ($lm.Format "2006-01-02T15:04:05-07:00") }}</lastmod>
+    {{- end }}
+  </sitemap>
+  {{- end }}
+</sitemapindex>
