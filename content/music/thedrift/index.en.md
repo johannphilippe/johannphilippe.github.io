@@ -2,7 +2,7 @@
 title: "The drift"
 date: 2024-01-26
 category: performance
-summary: "Performance dans l'espace"
+summary: "Spatial performance"
 cover: "atoui.png.webp"
 cover_credit: ""
 player: ""

@@ -11,10 +11,18 @@ defaultContentLanguageInSubdir = false
 # from the build and the "upcoming" section is always empty.
 buildFuture = true
 
-# Clean, minimal output. No taxonomies we don't use.
 enableEmoji = false
 enableInlineShortcodes = true
 summaryLength = 30
+
+# Generate /robots.txt (see layouts/robots.txt) pointing crawlers at the sitemap.
+enableRobotsTXT = true
+
+# We don't use tags/categories as taxonomies (music filters on a plain `category`
+# front-matter field). Disabling them avoids publishing empty /tags/ and
+# /categories/ pages, which are dead weight for search engines.
+# NOTE: these must stay ABOVE any [table] header — TOML would otherwise nest them.
+disableKinds = ["taxonomy", "term"]
 
 # Markdown: allow raw HTML (needed for embeds), sober defaults.
 [markup]
@@ -23,7 +31,3 @@ summaryLength = 30
   [markup.highlight]
     noClasses = false
     style = "bw"
-
-[taxonomies]
-  category = "categories"
-  tag = "tags"

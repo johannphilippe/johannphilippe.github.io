@@ -1,0 +1,75 @@
+{{- /* All SEO / social metadata for a page. */ -}}
+
+{{- /* Description: front-matter description -> summary -> page content -> site default. */ -}}
+{{- $desc := "" -}}
+{{- with .Description }}{{ $desc = . }}{{ end -}}
+{{- if not $desc }}{{ with .Params.summary }}{{ $desc = . }}{{ end }}{{ end -}}
+{{- if not $desc }}{{ with .Content }}{{ $desc = . }}{{ end }}{{ end -}}
+{{- if not $desc }}{{ $desc = site.Params.description }}{{ end -}}
+{{- $desc = $desc | plainify | htmlUnescape | chomp | truncate 165 -}}
+
+{{- $title := cond .IsHome site.Title .Title -}}
+{{- $ogimg := partial "og-image.html" . -}}
+{{- $defLang := (index site.Languages 0).Lang -}}
+
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- /* Language alternates: essential for a bilingual site. */ -}}
+{{- $xdefault := "" -}}
+{{- range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+  {{- if eq .Language.Lang $defLang }}{{ $xdefault = .Permalink }}{{ end -}}
+{{- end }}
+{{- with $xdefault }}
+  <link rel="alternate" hreflang="x-default" href="{{ . }}">
+{{- end }}
+
+{{- with .OutputFormats.Get "RSS" }}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
+{{- end }}
+
+{{- /* Open Graph */}}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:locale" content="{{ replace .Language.LanguageCode "-" "_" }}">
+{{- range .AllTranslations }}
+  {{- if ne .Language.Lang $.Language.Lang }}
+  <meta property="og:locale:alternate" content="{{ replace .Language.LanguageCode "-" "_" }}">
+  {{- end }}
+{{- end }}
+{{- with $ogimg }}
+<meta property="og:image" content="{{ . }}">
+{{- end }}
+{{- if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+
+{{- /* Twitter / X card */}}
+<meta name="twitter:card" content="{{ cond (ne $ogimg "") "summary_large_image" "summary" }}">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{- with $ogimg }}
+<meta name="twitter:image" content="{{ . }}">
+{{- end }}
+
+{{- /* Structured data: identifies Johann as a Person entity, and links the
+       official profiles together (helps search engines connect them). */ -}}
+{{- if or .IsHome (eq .Section "about") }}
+  {{- $sameAs := slice -}}
+  {{- range site.Params.contact -}}
+    {{- if not (hasPrefix .url "mailto:") }}{{ $sameAs = $sameAs | append .url }}{{ end -}}
+  {{- end -}}
+  {{- $person := dict
+        "@context" "https://schema.org"
+        "@type" "Person"
+        "name" "Johann Philippe"
+        "url" site.BaseURL
+        "description" $desc
+        "sameAs" $sameAs -}}
+  {{- with $ogimg }}{{ $person = merge $person (dict "image" .) }}{{ end -}}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{- end }}

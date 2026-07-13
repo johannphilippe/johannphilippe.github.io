@@ -2,7 +2,7 @@
 title: "A linea - en s'écartant de la ligne"
 date: 2026-05-15
 category: composition
-summary: "Composition électroacoustique pour oeuvre vidéo"
+summary: "Electroacoustic composition for video"
 cover: "alinea.png"
 cover_credit: ""
 player: ""

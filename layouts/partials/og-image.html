@@ -1,0 +1,37 @@
+{{- /* Returns an absolute image URL for social sharing (og:image / twitter:image),
+       or "" if none. Falls back: page cover -> portrait -> site home_image.
+       Rendered as JPEG (not WebP) for maximum crawler compatibility. */ -}}
+{{- $p := . -}}
+{{- $img := "" -}}
+{{- $src := "" -}}
+{{- with $p.Params.cover }}{{ $src = . }}{{ end -}}
+{{- if not $src }}{{ with $p.Params.portrait }}{{ $src = . }}{{ end }}{{ end -}}
+
+{{- if $src -}}
+  {{- if or (hasPrefix $src "http") (hasPrefix $src "//") -}}
+    {{- $img = $src -}}
+  {{- else -}}
+    {{- with $p.Resources.GetMatch $src -}}
+      {{- if in (slice "jpeg" "png" "webp" "tiff" "bmp") .MediaType.SubType -}}
+        {{- $eff := cond (lt .Width 1200) .Width 1200 -}}
+        {{- $img = (.Resize (printf "%dx jpg q85" $eff)).Permalink -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $img -}}
+  {{- with site.Params.home_image -}}
+    {{- if or (hasPrefix . "http") (hasPrefix . "//") -}}
+      {{- $img = . -}}
+    {{- else -}}
+      {{- with resources.Get . -}}
+        {{- $eff := cond (lt .Width 1200) .Width 1200 -}}
+        {{- $img = (.Resize (printf "%dx jpg q85" $eff)).Permalink -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if and $img (not (hasPrefix $img "http")) -}}{{- $img = $img | absURL -}}{{- end -}}
+{{- $img -}}
