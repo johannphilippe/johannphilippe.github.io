@@ -58,6 +58,18 @@
 
 {{- /* Structured data: identifies Johann as a Person entity, and links the
        official profiles together (helps search engines connect them). */ -}}
+{{- /* Site name: without this, Google labels the result with the domain owner
+       ("GitHub", since we're on a github.io subdomain). WebSite structured data
+       on the HOME PAGE is how Google sources the displayed site name. */ -}}
+{{- if .IsHome }}
+  {{- $website := dict
+        "@context" "https://schema.org"
+        "@type" "WebSite"
+        "name" "Johann Philippe"
+        "url" site.BaseURL -}}
+<script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>
+{{- end }}
+
 {{- if or .IsHome (eq .Section "about") }}
   {{- $sameAs := slice -}}
   {{- range site.Params.contact -}}
