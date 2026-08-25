@@ -1,10 +1,9 @@
 ---
 title: "À propos"
-portrait: "jofb.jpg"
+portrait: "piliok3.jpg"
 ---
-Johann Philippe est compositeur de musique électroacoustique, réalisateur en informatique musicale,
-développeur et pédagogue. Son travail explore une musique radicale — bruit et douceur,
-électroacoustique — toujours chargée d'une certaine poésie.
+Johann Philippe est compositeur, réalisateur en informatique musicale, développeur et pédagogue. Il est à la recherche d'une musique radicale — chaos, tendresse et sérendipité — mais est aussi militant d'une musique qui se partage et s'entend sans effort, loin des gargarismes *savants* de nombreux contemporains.
 
-Il défend une pratique DIY **low-tech** et **F/LOSS** : recycler les matériaux, construire
-ses propres outils, garder la main sur la technologie plutôt que l'inverse.
+Il défend une cuisine musicale DIY : recycler, construire ses propres outils, et les casser lorsqu'ils fonctionnent trop bien : toujours à la recherche de cette petite erreur, étincelle, cette imprécision fondamentale qui est certainement à l'origine du big bang (et par conséquent, du big band).   
+
+Il oscille entre des projets de nature bien différentes : performance, composition, création avec les jeunes publics, recherche, bidouillage, accompagnement d'artistes.  

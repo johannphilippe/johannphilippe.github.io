@@ -1,8 +1,9 @@
 ---
 title: "About"
-portrait: "jofb.png"
+portrait: "piliok3.png"
 ---
+Johann Philippe is a composer, computer music designer, developer, and educator. He is in search of a radical music—chaos, tenderness, and serendipity—but is also an advocate for music that is shared and listened to effortlessly, far from the scholarly posturing of many contemporaries.
 
-Johann Philippe is an electroacoustic music composer, computer music designer, developer, and educator. His work explores a radical style of music—combining noise and softness, electroacoustics—always infused with a certain poetry.
+He champions a DIY approach to musical cooking: recycling, building his own tools, and breaking them when they work too well. He is always on the lookout for that little error, that spark, that fundamental imprecision which is undoubtedly at the origin of the big bang (and consequently, the big band).
 
-He advocates for a DIY, low-tech, and F/LOSS approach: recycling materials, building his own tools, and keeping control over technology rather than letting it control him.
+He oscillates between projects of very different natures: performance, composition, creation with young audiences, research, tinkering, and supporting artists.
