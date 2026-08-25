@@ -1,6 +1,6 @@
 ---
 title: "About"
-portrait: "piliok3.png"
+portrait: "piliok.png"
 ---
 Johann Philippe is a composer, computer music designer, developer, and educator. He is in search of a radical music—chaos, tenderness, and serendipity—but is also an advocate for music that is shared and listened to effortlessly, far from the scholarly posturing of many contemporaries.
 

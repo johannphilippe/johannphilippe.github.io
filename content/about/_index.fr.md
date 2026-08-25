@@ -1,6 +1,6 @@
 ---
 title: "À propos"
-portrait: "piliok3.jpg"
+portrait: "piliok.png"
 ---
 Johann Philippe est compositeur, réalisateur en informatique musicale, développeur et pédagogue. Il est à la recherche d'une musique radicale — chaos, tendresse et sérendipité — mais est aussi militant d'une musique qui se partage et s'entend sans effort, loin des gargarismes *savants* de nombreux contemporains.
 
